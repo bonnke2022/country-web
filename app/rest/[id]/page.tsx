@@ -6,8 +6,12 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-const SingleProductPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+export type PageProps = {
+  params: { id: string };
+};
+
+const SingleProductPage = async ({ params }: PageProps) => {
+  const { id } = params;
 
   const queryClient = new QueryClient();
 
