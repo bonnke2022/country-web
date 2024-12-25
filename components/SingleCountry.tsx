@@ -13,8 +13,12 @@ import {
   getNativeCommonName,
 } from "./CountriesList";
 
-const SingleCountry = ({ id }: { id: string }) => {
-  console.log(id);
+export type PageProps = {
+  params: { id: string };
+};
+
+const SingleCountry = ({ params }: PageProps) => {
+  const { id } = params;
   const { data } = useQuery({
     queryKey: ["country", id],
     queryFn: () => fetchSingleCountry(id),
