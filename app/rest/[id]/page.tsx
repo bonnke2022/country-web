@@ -6,12 +6,12 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-export type PageProps = {
-  params: { id: string };
-};
-
-const SingleProductPage = async ({ params }: PageProps) => {
-  const { id } = params;
+const SingleProductPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params;
 
   const queryClient = new QueryClient();
 
@@ -19,6 +19,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
     queryKey: ["country", id],
     queryFn: () => fetchSingleCountry(id),
   });
+  console.log(params);
   console.log(id);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
